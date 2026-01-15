@@ -1,0 +1,31 @@
+<div class="newConfigContainer">
+    <div class="leftSide">
+        <form>
+          <p>
+            <label for="configName">Name:</label>
+            <input type="text" name="configName" id="configName" [value]="newConfigName()" (keyup)="updateName($any($event))">
+          </p>
+          <p>
+            <label for="configManagerId">Manager ID:</label>
+            <input type="text" name="configManagerId" id="configManagerId" [value]="newConfigManagerId()" (keyup)="updateManagerId($any($event))">
+          </p>
+          <p>
+            <label for="configLogoFile">Logo Filename:</label>
+            <input type="text" name="configLogoFile" id="configLogoFile" [value]="newConfigLogoFile()" (keyup)="updateLogoFile($any($event))">
+          </p>
+          <p>
+            <label for="configBackgroundColor">Background Color:</label>
+            <input type="text" name="configBackgroundColor" id="configBackgroundColor" [value]="newConfigBackgroundColor()" (keyup)="updateConfigBackgroundColor($any($event))">
+          </p>
+          <p>
+            <label for="configColor">Color:</label>
+            <input type="text" name="configColor" id="configColor" [value]="newConfigColor()" (keyup)="updateConfigColor($any($event))">
+          </p>
+        </form>
+      </div>
+      <div class="rightSide">
+        <pre>
+          {{newConfig()}}
+        </pre>
+      </div>
+  </div>

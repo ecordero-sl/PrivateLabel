@@ -1,9 +1,10 @@
 import { Component, computed, input, signal } from '@angular/core';
 import { PRIVATE_LABELS, VIEWS } from '../constants';
+import { NewConfig } from '../new-config/new-config';
 
 @Component({
   selector: 'app-email-preview',
-  imports: [],
+  imports: [NewConfig],
   templateUrl: './email-preview.html',
   styleUrl: './email-preview.css',
 })
@@ -92,9 +93,15 @@ export class EmailPreview {
     }, 5000);
   }
 
-  currentView = signal<string>('preview');
+  currentView = signal<string>('new');
   selectedView = computed(() => this.currentView());
   changeView(index: number): void {
     this.currentView.set(this.views[index].name);
   }
+
+  newConfigName = signal<string>('ACME Mortgages, Inc.');
+  newConfigManagerId = signal<string>('1A23B45C-67DE-8F90-GHIJ-K12L34567M89');
+  newConfigLogoFile = signal<string>('defaultEmailLogo.jpg');
+  newConfigBackgroundColor = signal<string>('fuchsia');
+  newConfigColor = signal<string>('yellow');
 }

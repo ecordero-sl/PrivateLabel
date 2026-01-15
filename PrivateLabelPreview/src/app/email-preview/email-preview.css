@@ -1,5 +1,7 @@
-.xmlContainer pre {
+section {
     width: 700px;
+}
+.xmlContainer pre {
     height: 150px;
     overflow-x: scroll;
     background-color: #eee;
@@ -15,7 +17,7 @@
     margin-right: 1em;
 }
 
-.email-container {
+.emailContainer {
     padding: 20px;
 }
 

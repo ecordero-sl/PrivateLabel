@@ -8,7 +8,6 @@
    }
 </header>
 <div class="divider-horizontal"></div>
-{{currentView()}}
 @if(currentView() === 'xml') {
 <section>
   <h3>XML Preview</h3>
@@ -35,7 +34,7 @@
 @if(currentView() === 'preview'){
 <section>
   <h3>Email Preview</h3>
-  <div class="email-container" [style.background-color]="plTheme()">
+  <div class="emailContainer" [style.background-color]="plTheme()">
     <div
     style="
       color: #949494;
@@ -245,4 +244,10 @@ data-ogsc=""
 </div>
 </div>
 </section>
+}
+@if (currentView() === 'new') {
+  <section>
+    <h3>New Preview</h3>
+    <app-new-config [(newConfigName)]="newConfigName"></app-new-config>
+  </section>
 }

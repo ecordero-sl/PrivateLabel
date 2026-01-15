@@ -16,6 +16,7 @@ export interface IView {
 export const VIEWS: IView[] = [
   { name: 'preview', label: 'Preview' },
   { name: 'xml', label: 'XML' },
+  { name: 'new', label: 'Add New +' },
 ];
 
 export const PRIVATE_LABELS: IPrivateLabel[] = [
