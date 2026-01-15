@@ -1,0 +1,17 @@
+<main class="main">
+  <header>
+    <h1>Private Label Email Preview</h1>
+  </header>
+  <div class="divider-horizontal"></div>
+  <div class="content">
+    <div class="left-side">
+      <app-pl-switcher [(managerIdSelection)]="managerId" [(isDarkThemeSelection)]="isDarkTheme"></app-pl-switcher>
+    </div>
+    <div class="divider" role="separator" aria-label="Divider"></div>
+    <div>
+      <app-email-preview [managerIdSelection]="selectedManagerId()" [isDarkThemeSelection]="isDarkThemeSelected()"></app-email-preview>
+    </div>
+  </div>
+</main>
+
+<router-outlet />

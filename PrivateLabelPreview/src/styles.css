@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+button {
+    font-size: .875rem;
+    background-color: cornsilk;
+    border: 1px solid #888;
+    border-radius: 16px;
+    display: inline-block;
+    margin: 0 5px 5px 0;
+    padding: .25rem .75rem;
+    white-space: nowrap;
+
+    &:hover {
+        background-color: rgba(205, 133, 63, .3);
+    }
+
+    &.isSelected, &.isSelected:hover,
+    &.isChecked, &.isChecked:hover {
+        background-color: rgba(205, 133, 63, .7);
+    }
+  }

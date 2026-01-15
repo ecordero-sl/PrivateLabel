@@ -1,0 +1,31 @@
+.xmlContainer pre {
+    width: 700px;
+    height: 150px;
+    overflow-x: scroll;
+    background-color: #eee;
+    border:1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+}
+.confirmation {
+    color: green;
+    font-size: .8rem;
+}
+.copyButton {
+    margin-right: 1em;
+}
+
+.email-container {
+    padding: 20px;
+}
+
+.divider-horizontal {
+    height: 1px;
+    background: var(--red-to-pink-to-purple-vertical-gradient);
+    margin: 1em 0;
+  }
+header span {
+    display: block;
+    font-weight: 400;
+    font-size: 1rem;
+}
