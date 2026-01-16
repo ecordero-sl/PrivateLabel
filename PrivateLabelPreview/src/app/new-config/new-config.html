@@ -1,6 +1,7 @@
 <div class="newConfigContainer">
   <div class="leftSide">
     <div class="formContainer">
+      <h4>Private Label Email Customizations</h4>
       <form>
         <p>
           <label for="configSubdomain">Subdomain:</label>
@@ -29,7 +30,7 @@
       </form>
     </div>
     <div class="codeContainer">
-      <h4>Private Label XML Config</h4>
+      <h4>Private Label Email Service XML Config</h4>
       <p>Add this config to the database to enable Private Label Email service.</p>
       <p>
         <button class="copyButton" (click)="copyXmlConfig()">Copy XML Config</button>
@@ -40,8 +41,8 @@
       <pre>
         {{xmlConfig()}}
       </pre>
-    <!-- </div>
-    <div class="codeContainer"> -->
+    </div>
+    <div class="codeContainer">
       <h4>Private Label Email Preview Tool Config</h4>
       <p>This is used to permanently add a new 'saved preview' to this tool. Refer to the instructions in the README file.</p>
       <p>

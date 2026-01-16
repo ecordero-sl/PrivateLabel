@@ -6,11 +6,11 @@ This tool simplifies the process of setting up Private Label Email service by ma
 
 ## Features
 
-- Preview private label email before updating the database.
-- Preview and copy the XML required for the database (DEV and PROD).
-- Use a simplified configuration to add a new private label preview.
+- Preview customized Private Label Email without updating the database.
+- Auto-generated Private Label Email Service XML configuration.
+- Auto-generated Private Label Email Preview configuration for saving previews.
 
-## Quick Start
+## Getting Started
 
 To use this app, download the code and run locally in development mode:
 
@@ -21,11 +21,19 @@ Once the server is running, open your browser and navigate to `http://localhost:
 
 ## Quick Preview
 
-Use the Quick Preview to customize a Private Label Email Preview. As you do this, the XML required to enable Private Label Email service for a customer will be updated. Quick Preview also displays the preview configuration you can add use to save the preview as a 'Saved Preview' in this tool. Use the respective copy buttons to copy the configurations.
+Use the Quick Preview to customize a Private Label Email Preview.
+
+As you customize the preview, the XML configuration required to enable Private Label Email service for a customer will be automatically generated.
+
+Additionally, the preview configuration you can use to save the preview as a 'Saved Preview' in this tool will be automatically generated. Note that previews require manual changes.
+
+Use the respective copy buttons to copy the configurations.
 
 ## Saved Previews
 
-To save a private label email preview to this tool (a 'saved preview'), you need to add a new private label preview configuration to the `PRIVATE_LABELS` array in the file `constants.ts`. Use the Quick Preview to generate the configuration.
+To save a private label email preview to this tool (a 'saved preview'), you need to add a new private label preview configuration to the `PRIVATE_LABELS` array in the file `constants.ts`. Use the Quick Preview to generate the configuration. You will also need a logo file, which needs to be added to the `/public/emailLogos` folder in the application.
+
+### Customizations
 
 The following customizations are available:
 
@@ -49,6 +57,8 @@ Example:
   },
 ```
 
-Once added, the preview will be available in the application.
+Once added, the preview will be available in the application on the Saved Previews page.
+
+---
 
 For additional information about how to create Private Label service (email and web UI), including image preparation, see the [Private Label Service](https://sharper.slab.com/posts/private-label-service-cc5j8fyy) documentation on Slab.
