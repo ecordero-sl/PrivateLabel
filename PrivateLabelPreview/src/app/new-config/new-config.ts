@@ -1,4 +1,4 @@
-import { Component, computed, model } from '@angular/core';
+import { Component, computed, model, signal } from '@angular/core';
 
 @Component({
   selector: 'app-new-config',
@@ -40,4 +40,21 @@ export class NewConfig {
       }
     }`
   );
+
+  confirmConfigCopy = signal<boolean>(false);
+  async copyPreviewConfig(): Promise<void> {
+    let textToCopy = this.newConfig();
+    try {
+      await navigator.clipboard.writeText(textToCopy);
+      setTimeout(() => {
+        this.confirmConfigCopy.set(true);
+      }, 1000);
+    } catch (error) {
+      console.log('An error occurred while copying:', error);
+      this.confirmConfigCopy.set(false);
+    }
+    setTimeout(() => {
+      this.confirmConfigCopy.set(false);
+    }, 5000);
+  }
 }

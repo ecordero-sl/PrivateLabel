@@ -93,7 +93,7 @@ export class EmailPreview {
     }, 5000);
   }
 
-  currentView = signal<string>('new');
+  currentView = signal<string>(this.views[0].name);
   selectedView = computed(() => this.currentView());
   changeView(index: number): void {
     this.currentView.set(this.views[index].name);

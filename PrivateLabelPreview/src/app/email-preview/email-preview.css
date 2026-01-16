@@ -15,6 +15,10 @@ section {
 }
 .copyButton {
     margin-right: 1em;
+
+    &:active {
+        background-color: rgba(205, 133, 63, .8);
+    }
 }
 
 .emailContainer {
