@@ -1,14 +1,7 @@
 section {
-    width: 700px;
+    width: 100%;
 }
-.xmlContainer pre {
-    height: 150px;
-    overflow-x: scroll;
-    background-color: #eee;
-    border:1px solid #ddd;
-    border-radius: 5px;
-    padding: 20px;
-}
+
 .confirmation {
     color: green;
     font-size: .8rem;
@@ -21,17 +14,40 @@ section {
     }
 }
 
-.emailContainer {
-    padding: 20px;
+.savedEmailPreviewContainer {
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+    margin-top: 10px;
+    outline: 1px dotted #ddd;
 }
 
+.divider {
+    width: 2px;
+    background: var(--red-to-pink-to-purple-vertical-gradient);
+    margin-inline: 3rem;
+  }
 .divider-horizontal {
     height: 1px;
     background: var(--red-to-pink-to-purple-vertical-gradient);
     margin: 1em 0;
   }
+header {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+}
 header span {
     display: block;
     font-weight: 400;
     font-size: 1rem;
+}
+
+.savedPreviews {
+    display: flex;
+    justify-content: center;
+}
+.savedPreviews .buttons {
+    margin-right: 20px;
 }

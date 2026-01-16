@@ -1,31 +1,39 @@
 .newConfigContainer {
-    align-content: center;
+    display: flex;
+    justify-content: flex-start;
     width: 100%;
-
-    pre {
-        height: 150px;
-        overflow-x: scroll;
-        background-color: #eee;
-        border:1px solid #ddd;
-        border-radius: 5px;
-    }
 }
-&.leftSide {
+
+.leftSide {
+    margin-right: 20px;
+    width: 550px;
+}
+
+pre {
+    height: 150px;
+    overflow-x: scroll;
+    background-color: #eee;
+    border:1px solid #ddd;
+    border-radius: 5px;
+}
+&.formContainer {
     display: flex;
     width: 100%;
 
 }
-&.rightSide {
+&.codeContainer {
     width: 100%;
 }
 
 form {
-    min-height: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 0;
     box-sizing: inherit;
     width: 100%;
+    background-color: #ccc;
+    border:1px solid #888;
+    border-radius: 5px;
 
     p {
         padding: .5rem;
@@ -37,14 +45,12 @@ form {
             text-align: left;
             border-radius: 5px;
             margin-bottom:.5rem;
-            width: 100%;
         }
         input {
             border: 1px solid #888;
             border-radius: 5px;
             padding: .5rem;
             text-align: left;
-            width: 92%;
         }
     }
 }

@@ -4,13 +4,7 @@
   </header>
   <div class="divider-horizontal"></div>
   <div class="content">
-    <div class="left-side">
-      <app-pl-switcher [(managerIdSelection)]="managerId" [(isDarkThemeSelection)]="isDarkTheme"></app-pl-switcher>
-    </div>
-    <div class="divider" role="separator" aria-label="Divider"></div>
-    <div>
-      <app-email-preview [managerIdSelection]="selectedManagerId()" [isDarkThemeSelection]="isDarkThemeSelected()"></app-email-preview>
-    </div>
+    <app-email-preview></app-email-preview>
   </div>
 </main>
 

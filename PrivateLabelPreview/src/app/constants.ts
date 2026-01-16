@@ -14,9 +14,8 @@ export interface IView {
   label: string;
 }
 export const VIEWS: IView[] = [
-  { name: 'preview', label: 'Preview' },
-  { name: 'xml', label: 'XML' },
-  { name: 'new', label: 'Add New +' },
+  { name: 'quick', label: 'Quick Preview' },
+  { name: 'saved', label: 'Saved Previews' },
 ];
 
 export const PRIVATE_LABELS: IPrivateLabel[] = [
