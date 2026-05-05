@@ -4,6 +4,14 @@
     width: 100%;
 }
 
+.newEmailContainer {
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+    margin-top: 10px;
+    outline: 1px dotted #ddd;
+}
+
 .leftSide {
     margin-right: 20px;
     width: 550px;

@@ -19,9 +19,9 @@ To use this app, download the code and run locally in development mode:
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files, e.g., when you add a new configuration for a new private label email implementation.
 
-## Quick Preview
+## Config Builder
 
-Use the Quick Preview to customize a Private Label Email Preview.
+Use the Config Builder to create a custom Private Label Email configuration. The preview will update as you change config values.
 
 As you customize the preview, the XML configuration required to enable Private Label Email service for a customer will be automatically generated.
 
@@ -31,7 +31,7 @@ Use the respective copy buttons to copy the configurations.
 
 ## Saved Previews
 
-To save a private label email preview to this tool (a 'saved preview'), you need to add a new private label preview configuration to the `PRIVATE_LABELS` array in the file `constants.ts`. Use the Quick Preview to generate the configuration. You will also need a logo file, which needs to be added to the `/public/emailLogos` folder in the application.
+To save a private label email preview to this tool (a 'saved preview'), you need to add a new private label preview configuration to the `PRIVATE_LABELS` array in the file `constants.ts`. Use the Config Builder to generate the configuration. You will also need a logo file, which needs to be added to the `/public/emailLogos` folder in the application.
 
 ### Customizations
 
@@ -50,7 +50,7 @@ Example:
     name: 'New Config',
     managerId: '1A23B45C-67DE-8F90-GHIJ-K12L34567M89',
     email: {
-      logoFile: 'defaultEmailLogo.jpg',
+      logoFile: 'demoEmailLogo.jpg',
       backgroundColor: 'fuchsia',
       color: 'yellow',
     },

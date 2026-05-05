@@ -1,18 +1,27 @@
+import { UpperCasePipe } from '@angular/common';
 import { Component, computed, model, signal } from '@angular/core';
+import { IPrivateLabel, PLACEHOLDER_SETTINGS } from '../constants';
+import { EmailContent } from '../email-content/email-content';
 
 @Component({
   selector: 'app-new-config',
-  imports: [],
+  imports: [EmailContent,UpperCasePipe],
   templateUrl: './new-config.html',
   styleUrl: './new-config.css',
 })
 export class NewConfig {
+  placeholder = PLACEHOLDER_SETTINGS
+  
   newConfigSubdomain = model<string>('dev');
-  newConfigName = model<string>('New Config');
-  newConfigManagerId = model<string>('1A23B45C-67DE-8F90-GHIJ-K12L34567M89');
-  newConfigLogoFile = model<string>('defaultEmailLogo.jpg');
-  newConfigBackgroundColor = model<string>('fuchsia');
-  newConfigColor = model<string>('yellow');
+  newConfigName = model<string>(this.placeholder.name);
+  newConfigManagerId = model<string>(this.placeholder.managerId);
+  newConfigLogoFile = model<string>(this.placeholder.email.logoFile);
+  newConfigBackgroundColor = model<string>(this.placeholder.email.backgroundColor);
+  newConfigColor = model<string>(this.placeholder.email.color);
+
+  isDarkMode = signal<boolean>(false);
+  newConfigTheme = computed(() => (this.isDarkMode() ? '#292929' : 'white'));
+
 
   updateSubdomain(event: any): void {
     this.newConfigSubdomain.set(event.target.value);
@@ -32,7 +41,19 @@ export class NewConfig {
   updateConfigColor(event: any): void {
     this.newConfigColor.set(event.target.value);
   }
-  newConfig = computed(
+  newConfig = computed<IPrivateLabel>(() => {
+    return {
+      name: this.newConfigName(),
+      managerId: this.newConfigManagerId(),
+      email: {
+        logoFile: this.newConfigLogoFile(),
+        backgroundColor: this.newConfigBackgroundColor(),
+        color: this.newConfigColor(),
+      }
+    }
+  })
+
+  newConfigValue = computed(
     () => `
     {
       name: ${this.newConfigName()},
@@ -67,7 +88,7 @@ export class NewConfig {
 
   confirmConfigCopy = signal<boolean>(false);
   async copyPreviewConfig(): Promise<void> {
-    let textToCopy = this.newConfig();
+    let textToCopy = this.newConfigValue();
     try {
       await navigator.clipboard.writeText(textToCopy);
       setTimeout(() => {
@@ -84,7 +105,7 @@ export class NewConfig {
 
   confirmXmlConfigCopy = signal<boolean>(false);
   async copyXmlConfig(): Promise<void> {
-    let textToCopy = this.newConfig();
+    let textToCopy = this.newConfigValue();
     try {
       await navigator.clipboard.writeText(textToCopy);
       setTimeout(() => {
@@ -97,5 +118,9 @@ export class NewConfig {
     setTimeout(() => {
       this.confirmXmlConfigCopy.set(false);
     }, 5000);
+  }
+  onThemeChange(event: any): void {
+    console.log(event.target.checked);
+    this.isDarkMode.set(!this.isDarkMode());
   }
 }

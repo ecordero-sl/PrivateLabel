@@ -14,20 +14,33 @@ export interface IView {
   label: string;
 }
 export const VIEWS: IView[] = [
-  { name: 'quick', label: 'Quick Preview' },
+  { name: 'quick', label: 'Config Builder' },
   { name: 'saved', label: 'Saved Previews' },
 ];
+export const SL_SETTINGS = {
+  name: 'Xactus Sharper Lending',
+  managerId: '9e74c20e-21cf-4f11-bcca-c55c57915b82',
+  email: {
+    logoFile: 'afLeftNavLogo.jpg',
+    backgroundColor: '#5b068a',
+    color: 'white',
+  },
+}
+
+export const DEFAULT_BGCOLOR = 'fuchsia'
+
+export const PLACEHOLDER_SETTINGS = {
+  name: 'Demo Mortgages, Inc.',
+  managerId: '1A23B45C-67DE-8F90-GHIJ-K12L34567M89',
+  email: {
+    logoFile: 'demoEmailLogo.jpg',
+    backgroundColor: 'fuchsia',
+    color: 'yellow',
+  },
+}
 
 export const PRIVATE_LABELS: IPrivateLabel[] = [
-  {
-    name: 'Default',
-    managerId: '9E74C20E-21CF-4F11-BCCA-C55C57915B82',
-    email: {
-      logoFile: 'defaultEmailLogo.jpg',
-      backgroundColor: 'red',
-      color: 'yellow',
-    },
-  },
+  {...PLACEHOLDER_SETTINGS},
   {
     name: 'Gold Star Mortgage',
     managerId: 'A70DC5F4-8AB3-4C4C-9048-2535D9ED92F6',
@@ -55,4 +68,5 @@ export const PRIVATE_LABELS: IPrivateLabel[] = [
       color: '#26524b',
     },
   },
+  {...SL_SETTINGS},
 ];
