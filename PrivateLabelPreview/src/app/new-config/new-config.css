@@ -67,7 +67,8 @@ form {
     margin-right: 1em;
 
     &:active {
-        background-color: rgba(205, 133, 63, .8);
+        background-color: corn;
+        color: aliceblue;
     }
 }
 .confirmation {

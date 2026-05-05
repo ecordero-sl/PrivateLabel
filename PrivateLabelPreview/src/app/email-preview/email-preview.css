@@ -10,7 +10,8 @@ section {
     margin-right: 1em;
 
     &:active {
-        background-color: rgba(205, 133, 63, .8);
+        background-color: cornflowerblue;
+        color: aliceblue;
     }
 }
 
@@ -37,6 +38,10 @@ header {
     justify-content: center;
     width: 100%;
     align-items: center;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 10px 0;
+    margin-bottom: 20px;
 }
 header span {
     display: block;

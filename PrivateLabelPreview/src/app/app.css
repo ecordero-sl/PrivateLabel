@@ -56,9 +56,10 @@
     min-height: 100%;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
     box-sizing: inherit;
     position: relative;
+    border: 1px solid lightgray;
+    border-radius: 5px;
   }
 
   header {
@@ -69,6 +70,24 @@
     margin-bottom: 2em;
     box-sizing: inherit;
     position: relative;
+  }
+
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+    max-width: 100%;
+  }
+
+  .item {
+    padding: 10px;
+    justify-content: center;
+    border-radius: 4px;
+  }
+
+  .item:nth-child(1),
+  .item:nth-child(2) {
+    grid-column: span 2;
   }
 
   .content {

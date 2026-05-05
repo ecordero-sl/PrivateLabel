@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 button {
     font-size: .875rem;
-    background-color: cornsilk;
+    background-color: aliceblue;
     border: 1px solid #888;
     border-radius: 16px;
     display: inline-block;
@@ -10,11 +10,20 @@ button {
     white-space: nowrap;
 
     &:hover {
-        background-color: rgba(205, 133, 63, .3);
+        background-color: rgba( 102, 153, 255, .3);
+        color: cornflowerblue;
+    }
+    &:active {
+        background-color: cornflowerblue;
+        color: aliceblue;
     }
 
     &.isSelected, &.isSelected:hover,
     &.isChecked, &.isChecked:hover {
-        background-color: rgba(205, 133, 63, .7);
+        background-color: cornflowerblue;
+        color: aliceblue;
+    }
+    &.isSelected {
+        font-weight: 800;
     }
   }
