@@ -15,7 +15,7 @@ export interface IView {
 }
 export const VIEWS: IView[] = [
   { name: 'quick', label: 'Config Builder' },
-  { name: 'saved', label: 'Saved Previews' },
+  { name: 'saved', label: 'Saved Email Configs' },
 ];
 export const SL_SETTINGS = {
   name: 'Xactus Sharper Lending',
