@@ -1,0 +1,25 @@
+pre {
+    height: 150px;
+    overflow-x: scroll;
+    background-color: #eee;
+    border:1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 95%;
+    overflow-x: auto;
+    justify-self: center;
+    padding: 10px;
+  }
+
+.copyButton {
+    margin-right: 1em;
+
+    &:active {
+        background-color: cornflowerblue;
+        color: aliceblue;
+    }
+}
+.confirmation {
+    color: green;
+    font-size: .8rem;
+}

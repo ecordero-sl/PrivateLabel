@@ -1,12 +1,47 @@
-<main class="main">
-  <header class="item">
-    <div>
-      <h1>Private Label Email Preview</h1>
-      <p class="subtitle">Create &amp; preview custom email configurations</p>
-    </div>
-  </header>
-  <div class="item content">
-    <app-email-preview></app-email-preview>
+<main class="parent">
+  <div class="div1">
+    <header>
+      <div>
+        <h1>Private Label Email Preview</h1>
+        <p class="subtitle">Create &amp; preview custom email configurations</p>
+      </div>
+    </header>  
+  </div>
+  <div class="div2">
+    <app-form-config-builder
+      (customSubdomain)="customSubdomain.set($event)"
+      (customAcctEmailConfig)="acctEmailConfigSnippet.set($event)"
+      (customPreviewConfig)="previewConfigSnippet.set($event)"
+      (newCustomConfig)="customConfig.set($event)"
+      (useDarkPreview)="useDarkPreview.set($event)"
+    ></app-form-config-builder>
+  </div>
+  <div class="div3">
+    <h4>Private Label Email Service XML Config</h4>
+    <p>Add this config to the database to enable Private Label Email service.</p>
+    <app-code-snippet
+      [code]="acctEmailConfigSnippet()"
+      [targetSubdomain]="customSubdomain()"
+    ></app-code-snippet>
+  </div>
+  <div class="div4">
+    <h4>Private Label Email Preview Tool Config</h4>
+    <p>This is used to create a config to permanently add a new 'saved preview' to this tool. Refer to the instructions in the README file.</p>
+  <app-code-snippet [code]="previewConfigSnippet()"></app-code-snippet>
+  </div>
+  <div class="div5">
+    <app-preview-controls
+      [privateLabels]="previewPrivateLabels()"
+      [placeholderManagerId]="placeHolderConfig.managerId"
+      (selectedPreviewConfig)="customConfig.set([$event])"
+      (selectedManagerId)="managerId.set($event)"
+    ></app-preview-controls>
+  </div>
+  <div class="div6">
+    <app-email-preview
+      [placeholder]="placeHolderConfig"
+      [activePreviewConfig]="previewConfig()"
+    ></app-email-preview>
   </div>
 </main>
 

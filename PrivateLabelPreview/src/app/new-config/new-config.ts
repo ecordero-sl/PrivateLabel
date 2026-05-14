@@ -1,11 +1,10 @@
-import { UpperCasePipe } from '@angular/common';
 import { Component, computed, model, signal } from '@angular/core';
 import { IPrivateLabel, PLACEHOLDER_SETTINGS } from '../constants';
 import { EmailContent } from '../email-content/email-content';
 
 @Component({
   selector: 'app-new-config',
-  imports: [EmailContent,UpperCasePipe],
+  imports: [EmailContent],
   templateUrl: './new-config.html',
   styleUrl: './new-config.css',
 })

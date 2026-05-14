@@ -1,0 +1,11 @@
+@if(privateLabels().length > 0) {
+  <div class="buttons">
+    @for (pl of privateLabels(); track $index) {
+      <button
+        [class.isSelected]="pl.managerId === newManagerId()"
+        (click)="onClick($event)"
+        value="{{pl.managerId}}"
+      >{{pl.name}}</button>
+    }
+  </div>
+}

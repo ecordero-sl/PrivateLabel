@@ -1,45 +1,7 @@
-  <header>
-    @for(view of views; track $index) {
-      <button class="btn-nav" [class.isSelected]="view.name === currentView()" (click)="changeView($index)">{{view.label}}</button>
-    }
-  </header>
-
-  <!-- <div class="divider-horizontal"></div> -->
-
-
-  @if (currentView() === 'quick') {
-    <section>
-      <app-new-config
-        [(newConfigSubdomain)]="newConfigSubdomain"
-        [(newConfigName)]="newConfigName"
-        [(newConfigManagerId)]="newConfigManagerId"
-        [(newConfigLogoFile)]="newConfigLogoFile"
-        [(newConfigBackgroundColor)]="newConfigBackgroundColor"
-        [(newConfigColor)]="newConfigColor"
-      ></app-new-config>
-    </section>
-  }
-
-  @if(currentView() === 'saved'){
-    <section class="savedPreviews">
-      <div class="buttons">
-        @for (pl of privateLabels; track $index) {
-          <button
-            [class.isSelected]="pl.managerId === managerId()"
-            (click)="onClick($index)"
-          >{{pl.name}}</button>
-        }
-        <div>
-          <label [class.isChecked]="isDarkTheme()">
-            <input type="checkbox" name="theme" formControlName="isDarkTheme" [value]="isDarkTheme()" (click)="onThemeChange($any($event))" />
-            Preview Dark Mode: (how your customizations will look if email viewed in Dark mode)
-          </label>
-        </div>
-      </div>
-      <div class="savedEmailPreviewContainer" [style.background-color]="plTheme()">
-        <app-email-content
-        [privateLabel]="activePreview() ?? placeholder"
-        ></app-email-content>
-      </div>
-    </section>
-  }
+  <section class="savedPreviews">
+    <div class="savedEmailPreviewContainer" [style.background-color]="plTheme()">
+      <app-email-content
+      [privateLabel]="selectedPreview()"
+      ></app-email-content>
+    </div>
+  </section>

@@ -1,0 +1,11 @@
+<div class="codeContainer">
+    <p>
+      <button class="copyButton" (click)="copyCodeSnippet()">{{ buttonText() }}</button>
+      @if(confirmCopy()) {
+        <span class="confirmation">Config Copied ✅</span>
+      }
+    </p>
+    <pre>
+      {{code().trim()}}
+    </pre>
+  </div>

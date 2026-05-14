@@ -21,7 +21,7 @@ export const SL_SETTINGS = {
   name: 'Xactus Sharper Lending',
   managerId: '9e74c20e-21cf-4f11-bcca-c55c57915b82',
   email: {
-    logoFile: 'afLeftNavLogo.jpg',
+    logoFile: 'afLeftNavLogo.png',
     backgroundColor: '#5b068a',
     color: 'white',
   },
@@ -40,7 +40,6 @@ export const PLACEHOLDER_SETTINGS = {
 }
 
 export const PRIVATE_LABELS: IPrivateLabel[] = [
-  {...PLACEHOLDER_SETTINGS},
   {
     name: 'Gold Star Mortgage',
     managerId: 'A70DC5F4-8AB3-4C4C-9048-2535D9ED92F6',

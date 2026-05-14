@@ -1,38 +1,43 @@
 
   :host {
-    --bright-blue: oklch(51.01% 0.274 263.83);
-    --rebecca: oklch(41% 0.23 280);
-    --electric-violet: oklch(53.18% 0.28 296.97);
-    --french-violet: oklch(47.66% 0.246 305.88);
-    --vivid-pink: oklch(69.02% 0.277 332.77);
-    --hot-red: oklch(61.42% 0.238 15.34);
-    --orange-red: oklch(63.32% 0.24 31.68);
-
     --gray-900: oklch(19.37% 0.006 300.98);
     --gray-700: oklch(36.98% 0.014 302.71);
     --gray-400: oklch(70.9% 0.015 304.04);
-
-    --red-to-pink-to-purple-vertical-gradient: linear-gradient(
-      180deg,
-      var(--vivid-pink) 0%,
-      var(--electric-violet) 50%,
-      var(--rebecca) 100%
-    );
-
-    --red-to-pink-to-purple-horizontal-gradient: linear-gradient(
-      90deg,
-      var(--vivid-pink) 0%,
-      var(--electric-violet) 50%,
-      var(--rebecca) 100%
-    );
-
-    --pill-accent: var(--bright-blue);
 
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial,
       sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* LAYOUT */
+  .parent {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(3, auto);
+    row-gap: 10px;
+    gap: 10px;
+    align-items: start;
+    padding: 10px;
+  }
+
+  .div1 {
+    grid-column: span 3 / span 3;
+    display: grid;
+    place-content: center;
+  }
+  .div3 {align-self: start;}
+  .div2, .div3, .div4 {
+    grid-row-start: 2;
+  }
+  .div5 {
+    grid-column: 1 / span 1; /* one column */
+    grid-row: 3;             /* row 3 */
+    }
+  .div6 {
+    grid-column: span 2 / span 1;
+    grid-row-start: 3;
   }
 
   h1 {
@@ -68,15 +73,12 @@
 
   header {
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     margin-bottom: 2em;
     box-sizing: inherit;
     position: relative;
   }
 
-  .container {
+  .layout-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 5px;
@@ -107,15 +109,4 @@
 
   .content p {
     margin-top: 1.5rem;
-  }
-
-  .divider {
-    width: 1px;
-    background: var(--red-to-pink-to-purple-vertical-gradient);
-    margin-inline: 0.5rem;
-  }
-  .divider-horizontal {
-    height: 1px;
-    background: var(--red-to-pink-to-purple-vertical-gradient);
-    margin: 2em 0;
   }
