@@ -1,4 +1,4 @@
-import { Component, computed, input, signal } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { IPrivateLabel } from '../constants';
 import { EmailContent } from '../email-content/email-content';
 
@@ -11,8 +11,9 @@ import { EmailContent } from '../email-content/email-content';
 export class EmailPreview {
   placeholder = input.required<IPrivateLabel>()
   activePreviewConfig = input<IPrivateLabel>()
+
   
-  private isDarkTheme = signal<boolean>(false);
+  isDarkTheme = input<boolean>(false);
   
   protected selectedPreview = computed<IPrivateLabel>(() => this.activePreviewConfig() ?? this.placeholder())
 
