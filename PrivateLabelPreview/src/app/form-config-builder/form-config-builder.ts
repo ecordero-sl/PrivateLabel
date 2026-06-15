@@ -1,5 +1,5 @@
 import { Component, computed, effect, model, output, signal } from '@angular/core';
-import { IPrivateLabel } from '../constants';
+import { IPrivateLabel, PLACEHOLDER_SETTINGS } from '../constants';
 
 @Component({
   selector: 'app-form-config-builder',
@@ -8,17 +8,6 @@ import { IPrivateLabel } from '../constants';
   styleUrl: './form-config-builder.css',
 })
 export class FormConfigBuilder {
- PLACEHOLDER_SETTINGS = {
-    name: 'Demo Mortgages, Inc.',
-    managerId: '1A23B45C-67DE-8F90-GHIJ-K12L34567M89',
-    email: {
-      logoFile: 'demoEmailLogo.jpg',
-      backgroundColor: 'fuchsia',
-      color: 'yellow',
-    },
-  }
-  
-
   customSubdomain = output<string>()
   customAcctEmailConfig = output<string>()
   customPreviewConfig = output<string>()
@@ -29,11 +18,11 @@ export class FormConfigBuilder {
   newConfigTheme = computed(() => (this.isDarkMode() ? '#292929' : 'white'));
   
   newConfigSubdomain = model<string>('dev');
-  newConfigName = model<string>(this.PLACEHOLDER_SETTINGS.name);
-  newConfigManagerId = model<string>(this.PLACEHOLDER_SETTINGS.managerId);
-  newConfigLogoFile = model<string>(this.PLACEHOLDER_SETTINGS.email.logoFile);
-  newConfigBackgroundColor = model<string>(this.PLACEHOLDER_SETTINGS.email.backgroundColor);
-  newConfigColor = model<string>(this.PLACEHOLDER_SETTINGS.email.color);
+  newConfigName = model<string>(PLACEHOLDER_SETTINGS.name);
+  newConfigManagerId = model<string>(PLACEHOLDER_SETTINGS.managerId);
+  newConfigLogoFile = model<string>(PLACEHOLDER_SETTINGS.email.logoFile);
+  newConfigBackgroundColor = model<string>(PLACEHOLDER_SETTINGS.email.backgroundColor);
+  newConfigColor = model<string>(PLACEHOLDER_SETTINGS.email.color);
 
   constructor() {
     effect(() => {
@@ -109,6 +98,6 @@ export class FormConfigBuilder {
 
   onThemeChange(event: any): void {
     console.log(event.target.checked);
-    this.isDarkMode.set(!this.isDarkMode());
+    this.isDarkMode.set(event.target.checked);
   }
 }
