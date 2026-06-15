@@ -27,8 +27,6 @@ export const SL_SETTINGS = {
   },
 }
 
-export const DEFAULT_BGCOLOR = 'fuchsia'
-
 export const PLACEHOLDER_SETTINGS = {
   name: 'Demo Mortgages, Inc.',
   managerId: '1A23B45C-67DE-8F90-GHIJ-K12L34567M89',

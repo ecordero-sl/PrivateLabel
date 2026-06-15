@@ -15,23 +15,6 @@ export class PreviewControls {
 
   newManagerId = model<string>(this.placeholderManagerId() ?? '')
   managerId = computed(() => this.newManagerId())
-  selectedConfig = computed(
-    () => {
-      const config = this.privateLabels().find(pl => pl.managerId === this.newManagerId())
-      if (!config) return ''
-      const result = 
-`{
-  name: ${config.name},
-  managerId: ${config.managerId},
-  email: {
-    logoFile: ${config.email.logoFile},
-    backgroundColor: ${config.email.backgroundColor},
-    color: ${config.email.color},
-  }
-}`
-      return result
-    }
-  );
 
   constructor() {
     effect(() => {

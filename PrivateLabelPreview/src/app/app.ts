@@ -29,7 +29,7 @@ export class App {
 
   selectedPrivateLabel = computed(() => this.previewPrivateLabels().find(pl => pl.managerId === this.managerId()) ?? this.previewPrivateLabels()[0])
   selectedPrivateLabelXMLConfig = computed(() => {
-    const privateLabel = this.previewPrivateLabels().find(pl => pl.managerId === this.managerId()) ?? this.previewPrivateLabels()[0]
+    const privateLabel = this.selectedPrivateLabel()
     const subdomain = 'dev'
     const config = `
       <privatelabel>
