@@ -2,7 +2,7 @@
   <div class="div1">
     <header>
       <div>
-        <h1>Private Label Email Preview</h1>
+        <h1>Private Label Email Builder &amp; Preview Tool</h1>
         <p class="subtitle">Create &amp; preview custom email configurations</p>
       </div>
     </header>  
@@ -17,7 +17,7 @@
     ></app-form-config-builder>
   </div>
   <div class="div3">
-    <h4>Private Label Email Service XML Config</h4>
+    <h4>New Private Label Email Service XML Config</h4>
     <p>Add this config to the database to enable Private Label Email service.</p>
     <app-code-snippet
       [code]="acctEmailConfigSnippet()"
@@ -25,17 +25,20 @@
     ></app-code-snippet>
   </div>
   <div class="div4">
-    <h4>Private Label Email Preview Tool Config</h4>
+    <h4>New Private Label Email Preview Tool Config</h4>
     <p>This is used to create a config to permanently add a new 'saved preview' to this tool. Refer to the instructions in the README file.</p>
   <app-code-snippet [code]="previewConfigSnippet()"></app-code-snippet>
   </div>
   <div class="div5">
+    <h4>Preview Saved Private Labels</h4>
+    <p>Only locally saved Private Labels can be previewed.</p>
     <app-preview-controls
       [privateLabels]="previewPrivateLabels()"
       [placeholderManagerId]="placeHolderConfig.managerId"
-      (selectedPreviewConfig)="customConfig.set([$event])"
       (selectedManagerId)="managerId.set($event)"
     ></app-preview-controls>
+    <h4>Selected Private Label Email XML Config</h4>
+    <app-code-snippet [code]="selectedPrivateLabelXMLConfig()" />
   </div>
   <div class="div6">
     <app-email-preview

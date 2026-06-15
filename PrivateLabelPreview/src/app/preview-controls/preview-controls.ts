@@ -11,7 +11,6 @@ export class PreviewControls {
   privateLabels = input<IPrivateLabel[]>([])
   placeholderManagerId = input<string>()
   
-  selectedPreviewConfig = output<IPrivateLabel>()
   selectedManagerId = output<string>()
 
   newManagerId = model<string>(this.placeholderManagerId() ?? '')
