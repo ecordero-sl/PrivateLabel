@@ -1,5 +1,9 @@
 import { Component, computed, effect, model, output, signal } from '@angular/core';
 import { IPrivateLabel, PLACEHOLDER_SETTINGS } from '../constants';
+import {
+  buildPreviewToolConfig,
+  buildPrivateLabelXmlConfig,
+} from '../private-label-formatting-utils';
 
 @Component({
   selector: 'app-form-config-builder',
@@ -64,37 +68,11 @@ export class FormConfigBuilder {
     }
   })
 
-  newConfigValue = computed(
-    () => {
-      const config = 
-      `{
-        name: ${this.newConfigName()},
-        managerId: ${this.newConfigManagerId()},
-        email: {
-          logoFile: ${this.newConfigLogoFile()},
-          backgroundColor: ${this.newConfigBackgroundColor()},
-          color: ${this.newConfigColor()},
-        }
-      }`
-      return config
-    }
-  );
+  newConfigValue = computed(() => buildPreviewToolConfig(this.newConfig()));
 
-  xmlConfigValue = computed(
-    () => {
-      const config = 
-      `
-      <privatelabel>
-        <applicationurl />
-        <logolink>https://${this.newConfigSubdomain()}.appraisalfirewall.com/afdesktop/assets/ui/${this.newConfigLogoFile()}?ver=2</logolink>
-        <name>${this.newConfigName()}</name>
-        <topstyle>background-color:${this.newConfigBackgroundColor()};font-weight:600;color:${this.newConfigColor()};width:700px;min-height:80px;border-top-left-radius:10px;border-top-right-radius:10px</topstyle>
-        <bottomstyle>background-color:${this.newConfigBackgroundColor()};font-weight:600;color:${this.newConfigColor()};width:700px;min-height:96px;border-bottom-left-radius:10px;border-bottom-right-radius:10px</bottomstyle>
-      </privatelabel>
-      `
-      return config
-    }
-  );
+  xmlConfigValue = computed(() => {
+    return buildPrivateLabelXmlConfig(this.newConfig(), this.newConfigSubdomain())
+  });
 
   onThemeChange(event: any): void {
     console.log(event.target.checked);
