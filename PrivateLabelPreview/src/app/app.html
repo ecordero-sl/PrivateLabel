@@ -38,6 +38,7 @@
       (selectedManagerId)="managerId.set($event)"
     ></app-preview-controls>
     <h4>Selected Private Label Email XML Config</h4>
+    <p>Manager ID: {{managerId()}}</p>
     <app-code-snippet [code]="selectedPrivateLabelXMLConfig()" />
   </div>
   <div class="div6">
