@@ -1,14 +1,27 @@
+.codeContainer {
+    width: 100%;
+    min-width: 0;
+}
+
+ .codeContainer p {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+}
+
 pre {
     height: 150px;
-    overflow-x: scroll;
     background-color: #eee;
     border:1px solid #ddd;
     border-radius: 5px;
     width: 100%;
-    max-width: 95%;
+    max-width: 100%;
+    min-width: 0;
     overflow-x: auto;
     justify-self: center;
     padding: 10px;
+    box-sizing: border-box;
   }
 
 .copyButton {

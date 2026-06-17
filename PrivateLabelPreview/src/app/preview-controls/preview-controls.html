@@ -1,14 +1,31 @@
 <div class="previewControls">
 
 @if(privateLabels().length > 0) {
-  <div class="buttons">
-    @for (pl of privateLabels(); track $index) {
-      <button
-        [class.isSelected]="pl.managerId === newManagerId()"
-        (click)="onClick($event)"
-        value="{{pl.managerId}}"
-      >{{pl.name}}</button>
-    }
+  <div class="buttonScroller">
+    <div class="scrollIndicatorContainer">
+      @if (canScrollLeft()) {
+        <span class="scrollIndicator" aria-hidden="true">&#9664;</span>
+      }
+    </div>
+    <div
+      #buttonsContainer
+      class="buttons"
+      aria-label="Saved preview options"
+      (scroll)="onButtonsScroll()"
+    >
+      @for (pl of privateLabels(); track $index) {
+        <button
+          [class.isSelected]="pl.managerId === newManagerId()"
+          (click)="onClick($event)"
+          value="{{pl.managerId}}"
+        >{{pl.name}}</button>
+      }
+    </div>
+    <div class="scrollIndicatorContainer">
+      @if (canScrollRight()) {
+        <span class="scrollIndicator" aria-hidden="true">&#9654;</span>
+      }
+    </div>
   </div>
 }
 </div>

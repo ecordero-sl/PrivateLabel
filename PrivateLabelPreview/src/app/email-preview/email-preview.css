@@ -18,9 +18,13 @@ section {
 .savedEmailPreviewContainer {
     display: flex;
     justify-content: center;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
     padding: 40px;
     margin-top: 10px;
     outline: 1px dotted #ddd;
+    box-sizing: border-box;
 }
 
 .divider {
@@ -52,7 +56,15 @@ header span {
 .savedPreviews {
     display: flex;
     justify-content: center;
+    width: 100%;
+    min-width: 0;
 }
 .savedPreviews .buttons {
     margin-right: 20px;
+}
+
+@media (max-width: 900px) {
+    .savedEmailPreviewContainer {
+        padding: 20px;
+    }
 }

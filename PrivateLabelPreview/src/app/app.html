@@ -5,49 +5,94 @@
         <h1>Private Label Previewer &amp; Builder</h1>
         <p class="subtitle">Create &amp; preview custom email configurations</p>
       </div>
+      <div class="mode-toggle" aria-label="View mode controls">
+        <button
+          type="button"
+          [class.is-active]="mode() === modes.build"
+          (click)="showBuildMode()"
+        >
+          Build
+        </button>
+        <button
+          type="button"
+          [class.is-active]="mode() === modes.browse"
+          (click)="showBrowseMode()"
+        >
+          Browse
+        </button>
+      </div>
     </header>  
   </div>
-  <div class="div2">
-    <app-form-config-builder
-      (customSubdomain)="customSubdomain.set($event)"
-      (customAcctEmailConfig)="acctEmailConfigSnippet.set($event)"
-      (customPreviewConfig)="previewConfigSnippet.set($event)"
-      (newCustomConfig)="customConfig.set($event)"
-      (useDarkPreview)="useDarkPreview.set($event)"
-    ></app-form-config-builder>
-  </div>
-  <div class="div3">
-    <h4>New Private Label Email Service XML Config</h4>
-    <p>Add this config to the database to enable Private Label Email service.</p>
-    <app-code-snippet
-      [code]="acctEmailConfigSnippet()"
-      [targetSubdomain]="customSubdomain()"
-    ></app-code-snippet>
-  </div>
-  <div class="div4">
-    <h4>New Private Label Email Preview Tool Config</h4>
-    <p>This is used to create a config to permanently add a new 'saved preview' to this tool. Refer to the instructions in the README file.</p>
-  <app-code-snippet [code]="previewConfigSnippet()"></app-code-snippet>
-  </div>
-  <div class="div5">
-    <h4>Preview Saved Private Labels</h4>
-    <p>Only locally saved Private Labels can be previewed.</p>
-    <app-preview-controls
-      [privateLabels]="previewPrivateLabels()"
-      [placeholderManagerId]="placeHolderConfig.managerId"
-      (selectedManagerId)="managerId.set($event)"
-    ></app-preview-controls>
-    <h4>Selected Private Label Email XML Config</h4>
-    <p>Manager ID: {{managerId()}}</p>
-    <app-code-snippet [code]="selectedPrivateLabelXMLConfig()" />
-  </div>
-  <div class="div6">
-    <app-email-preview
-      [isDarkTheme]="useDarkPreview()"
-      [placeholder]="placeHolderConfig"
-      [activePreviewConfig]="previewConfig()"
-    ></app-email-preview>
-  </div>
+  @if (mode() === modes.build) {
+    <div class="div2">
+      <app-form-config-builder
+        (customSubdomain)="customSubdomain.set($event)"
+        (customAcctEmailConfig)="acctEmailConfigSnippet.set($event)"
+        (customPreviewConfig)="previewConfigSnippet.set($event)"
+        (newCustomConfig)="customConfig.set($event)"
+        (useDarkPreview)="useDarkPreview.set($event)"
+      ></app-form-config-builder>
+    </div>
+    <div class="div3">
+      <h4>New Private Label Email Service XML Config</h4>
+      <p>Add this config to the database to enable Private Label Email service.</p>
+      <app-code-snippet
+        [code]="acctEmailConfigSnippet()"
+        [targetSubdomain]="customSubdomain()"
+      ></app-code-snippet>
+    </div>
+    <div class="div4">
+      <h4>New Private Label Email Preview Tool Config</h4>
+      <p>
+        This is used to create a config to permanently add a new 'saved preview' to this tool.
+        Refer to the instructions in the README file.
+      </p>
+      <app-code-snippet [code]="previewConfigSnippet()"></app-code-snippet>
+    </div>
+  } @else {
+    <div class="browse-layout">
+      <div class="browse-controls">
+        <h4>Preview Saved Private Labels</h4>
+        <p>Only locally saved Private Labels can be previewed.</p>
+        <app-preview-controls
+          [privateLabels]="previewPrivateLabels()"
+          [placeholderManagerId]="placeHolderConfig.managerId"
+          (selectedManagerId)="managerId.set($event)"
+        ></app-preview-controls>
+        <div class="browse-view-toggle" aria-label="Browse content controls">
+          <button
+            type="button"
+            [class.is-active]="browseView() === browseViews.preview"
+            (click)="showBrowsePreview()"
+          >
+            Show Preview
+          </button>
+          <button
+            type="button"
+            [class.is-active]="browseView() === browseViews.config"
+            (click)="showBrowseConfig()"
+          >
+            Show Config
+          </button>
+        </div>
+      </div>
+      @if (browseView() === browseViews.config) {
+        <div class="browse-panel">
+        <h4>Selected Private Label Email XML Config</h4>
+        <p>Manager ID: {{managerId()}}</p>
+        <app-code-snippet [code]="selectedPrivateLabelXMLConfig()" />
+        </div>
+      } @else {
+        <div class="browse-panel">
+          <app-email-preview
+            [isDarkTheme]="useDarkPreview()"
+            [placeholder]="placeHolderConfig"
+            [activePreviewConfig]="activeBrowsePreviewConfig()"
+          ></app-email-preview>
+        </div>
+      }
+    </div>
+  }
 </main>
 
 <router-outlet />
