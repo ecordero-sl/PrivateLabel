@@ -2,17 +2,7 @@
 
 @if(privateLabels().length > 0) {
   <div class="buttonScroller">
-    <div class="scrollIndicatorContainer">
-      @if (canScrollLeft()) {
-        <span class="scrollIndicator" aria-hidden="true">&#9664;</span>
-      }
-    </div>
-    <div
-      #buttonsContainer
-      class="buttons"
-      aria-label="Saved preview options"
-      (scroll)="onButtonsScroll()"
-    >
+    <div class="buttons" aria-label="Saved preview options">
       @for (pl of privateLabels(); track $index) {
         <button
           [class.isSelected]="pl.managerId === newManagerId()"
@@ -21,15 +11,10 @@
         >{{pl.name}}</button>
       }
     </div>
-    <div class="scrollIndicatorContainer">
-      @if (canScrollRight()) {
-        <span class="scrollIndicator" aria-hidden="true">&#9654;</span>
-      }
-    </div>
   </div>
 }
 <div class="managerInfo">
   <strong>{{selectedPrivateLabelName()}}</strong><br>
-  Manager ID: {{managerId()}}
+  {{managerId()}}
 </div>
 </div>

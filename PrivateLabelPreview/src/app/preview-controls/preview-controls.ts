@@ -1,15 +1,10 @@
 import {
-  AfterViewInit,
   Component,
   computed,
   effect,
-  ElementRef,
-  HostListener,
   input,
   model,
   output,
-  signal,
-  viewChild,
 } from '@angular/core';
 import { IPrivateLabel } from '../constants';
 
@@ -19,13 +14,10 @@ import { IPrivateLabel } from '../constants';
   templateUrl: './preview-controls.html',
   styleUrl: './preview-controls.css',
 })
-export class PreviewControls implements AfterViewInit {
+export class PreviewControls {
   privateLabels = input<IPrivateLabel[]>([]);
-  private readonly buttonsContainer = viewChild<ElementRef<HTMLDivElement>>('buttonsContainer');
 
   selectedManagerId = output<string>();
-  canScrollLeft = signal(false);
-  canScrollRight = signal(false);
 
   newManagerId = model<string>('');
   managerId = computed(() => this.newManagerId());
@@ -54,34 +46,7 @@ export class PreviewControls implements AfterViewInit {
     });
   }
 
-  ngAfterViewInit(): void {
-    requestAnimationFrame(() => this.updateScrollIndicators());
-  }
-
   onClick(event: any): void {
     this.newManagerId.set(event.target.value);
-  }
-
-  onButtonsScroll(): void {
-    this.updateScrollIndicators();
-  }
-
-  @HostListener('window:resize')
-  onWindowResize(): void {
-    this.updateScrollIndicators();
-  }
-
-  private updateScrollIndicators(): void {
-    const container = this.buttonsContainer()?.nativeElement;
-
-    if (!container) {
-      return;
-    }
-
-    const maxScrollLeft = container.scrollWidth - container.clientWidth;
-    const hasOverflow = maxScrollLeft > 1;
-
-    this.canScrollLeft.set(hasOverflow && container.scrollLeft > 1);
-    this.canScrollRight.set(hasOverflow && container.scrollLeft < maxScrollLeft - 1);
   }
 }

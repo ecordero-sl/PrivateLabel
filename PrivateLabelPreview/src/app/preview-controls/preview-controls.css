@@ -5,10 +5,6 @@
 }
 
 .buttonScroller {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr) auto;
-    align-items: center;
-    gap: 0.5rem;
     width: 75%;
     margin: 0 auto;
     max-width: 100%;
@@ -20,37 +16,22 @@
 }
 
 .managerInfo {
-    width: 75%;
     margin: 0.5rem auto 0;
-    max-width: 100%;
     text-align: center;
-}
-
-.scrollIndicatorContainer {
-    width: 1rem;
-    display: flex;
-    justify-content: center;
-}
-
-.scrollIndicator {
-    color: #666;
-    font-size: 1rem;
-    line-height: 1;
 }
 
 .buttons {
     display: flex;
-    flex-wrap: nowrap;
+    flex-direction: column;
     gap: 0.5rem;
-    overflow-x: auto;
-    overflow-y: hidden;
+    max-height: 150px;
+    overflow: hidden;
+    overflow-y: auto;
     padding: 0.5rem;
-    scrollbar-width: thin;
     min-width: 0;
     background-color: #fff;
 }
 
 .buttons button {
-    flex: 0 0 auto;
-    white-space: nowrap;
+    width: 100%;
 }

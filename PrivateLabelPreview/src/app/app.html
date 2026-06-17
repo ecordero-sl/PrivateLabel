@@ -82,7 +82,7 @@
     }
   } @else {
     <div class="browse-layout">
-      <div class="browse-controls">
+      <div class="browse-controls browse-controls-panel">
         <h4>Preview Saved Private Labels</h4>
         <p>Only locally saved Private Labels can be previewed.</p>
         <app-preview-controls
@@ -107,12 +107,12 @@
         </div>
       </div>
       @if (browseView() === browseViews.config) {
-        <div class="browse-panel">
+        <div class="browse-panel browse-content-panel">
         <h4>Selected Private Label Email XML Config</h4>
         <app-code-snippet [code]="selectedPrivateLabelXMLConfig()" />
         </div>
       } @else {
-        <div class="browse-panel">
+        <div class="browse-panel browse-content-panel">
           <app-email-preview
             [isDarkTheme]="useDarkPreview()"
             [placeholder]="placeHolderConfig"
