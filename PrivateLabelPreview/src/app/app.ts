@@ -21,6 +21,10 @@ export class App {
     build: 'build',
     browse: 'browse',
   } as const;
+  readonly buildViews = {
+    configs: 'configs',
+    preview: 'preview',
+  } as const;
   readonly browseViews = {
     preview: 'preview',
     config: 'config',
@@ -30,20 +34,22 @@ export class App {
   placeHolderConfig = { ...PLACEHOLDER_SETTINGS };
 
   mode = signal<(typeof this.modes)[keyof typeof this.modes]>(this.modes.build);
+  buildView = signal<(typeof this.buildViews)[keyof typeof this.buildViews]>(this.buildViews.configs);
   browseView = signal<(typeof this.browseViews)[keyof typeof this.browseViews]>(this.browseViews.preview);
   customSubdomain = signal<PrivateLabelSubdomain>('dev');
   acctEmailConfigSnippet = signal<string>('');
   previewConfigSnippet = signal<string>('');
   customConfig = signal<IPrivateLabel[]>([]);
+  isBuildFormValid = signal<boolean>(true);
   useDarkPreview = signal<boolean>(false);
   managerId = signal<string>('');
-  previewPrivateLabels = computed<IPrivateLabel[]>(() => this.customConfig().concat([...this.privateLabels]));
+  activeBuildPreviewConfig = computed(() => this.customConfig()[0] ?? this.placeHolderConfig);
   activeBrowsePreviewConfig = computed(
-    () => this.previewPrivateLabels().find(pl => pl.managerId === this.managerId()) ?? this.placeHolderConfig
+    () => this.privateLabels.find(pl => pl.managerId === this.managerId()) ?? this.placeHolderConfig
   );
 
   selectedPrivateLabel = computed(
-    () => this.previewPrivateLabels().find(pl => pl.managerId === this.managerId()) ?? this.previewPrivateLabels()[0]
+    () => this.privateLabels.find(pl => pl.managerId === this.managerId()) ?? this.privateLabels[0]
   );
   selectedPrivateLabelXMLConfig = computed(() => {
     const privateLabel = this.selectedPrivateLabel();
@@ -53,6 +59,15 @@ export class App {
 
   showBuildMode(): void {
     this.mode.set(this.modes.build);
+    this.buildView.set(this.buildViews.configs);
+  }
+
+  showBuildConfigs(): void {
+    this.buildView.set(this.buildViews.configs);
+  }
+
+  showBuildPreview(): void {
+    this.buildView.set(this.buildViews.preview);
   }
 
   showBrowseMode(): void {

@@ -21,24 +21,37 @@ import { IPrivateLabel } from '../constants';
 })
 export class PreviewControls implements AfterViewInit {
   privateLabels = input<IPrivateLabel[]>([]);
-  placeholderManagerId = input<string>();
   private readonly buttonsContainer = viewChild<ElementRef<HTMLDivElement>>('buttonsContainer');
 
   selectedManagerId = output<string>();
   canScrollLeft = signal(false);
   canScrollRight = signal(false);
 
-  newManagerId = model<string>(this.placeholderManagerId() ?? '');
+  newManagerId = model<string>('');
   managerId = computed(() => this.newManagerId());
+  selectedPrivateLabelName = computed(
+    () => this.privateLabels().find(pl => pl.managerId === this.managerId())?.name ?? ''
+  );
 
   constructor() {
     effect(() => {
       this.selectedManagerId.emit(this.managerId());
     });
-  }
 
-  ngOnInit() {
-    this.newManagerId.set(this.placeholderManagerId() ?? '');
+    effect(() => {
+      const privateLabels = this.privateLabels();
+      const currentManagerId = this.newManagerId();
+
+      if (privateLabels.length === 0) {
+        return;
+      }
+
+      const hasCurrentSelection = privateLabels.some(pl => pl.managerId === currentManagerId);
+
+      if (!hasCurrentSelection) {
+        this.newManagerId.set(privateLabels[0].managerId);
+      }
+    });
   }
 
   ngAfterViewInit(): void {

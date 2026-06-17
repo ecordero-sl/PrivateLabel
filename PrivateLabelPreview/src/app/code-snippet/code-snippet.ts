@@ -7,13 +7,20 @@ import { Component, computed, input, signal } from '@angular/core';
   styleUrl: './code-snippet.css',
 })
 export class CodeSnippet {
-  code = input<string>('{greeting: Hello, World!}')
-  targetSubdomain = input<string>('')
+  code = input<string>('{greeting: Hello, World!}');
+  targetSubdomain = input<string>('');
+  copyEnabled = input<boolean>(true);
 
-  buttonText = computed(() => this.targetSubdomain() === '' ? 'Copy' : `Copy for ${this.targetSubdomain().toUpperCase()}`)
+  buttonText = computed(() =>
+    this.targetSubdomain() === '' ? 'Copy' : `Copy for ${this.targetSubdomain().toUpperCase()}`
+  );
   confirmCopy = signal<boolean>(false);
 
   async copyCodeSnippet(): Promise<void> {
+    if (!this.copyEnabled()) {
+      return;
+    }
+
     try {
       await navigator.clipboard.writeText(this.code());
       setTimeout(() => {

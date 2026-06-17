@@ -22,6 +22,15 @@
   display: block;
 }
 
+.requiredField::after {
+  content: ' *';
+  color: #c00;
+}
+
+.requiredField.requiredEmpty::after {
+  content: ' * required';
+}
+
 .radioGroup {
   display: flex;
   flex-wrap: wrap;

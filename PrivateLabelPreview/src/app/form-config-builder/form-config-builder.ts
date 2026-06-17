@@ -17,6 +17,7 @@ export class FormConfigBuilder {
   customAcctEmailConfig = output<string>()
   customPreviewConfig = output<string>()
   newCustomConfig = output<IPrivateLabel[]>()
+  formValid = output<boolean>()
   useDarkPreview = output<boolean>()
 
   isDarkMode = signal<boolean>(false);
@@ -28,6 +29,19 @@ export class FormConfigBuilder {
   newConfigLogoFile = model<string>(PLACEHOLDER_SETTINGS.email.logoFile);
   newConfigBackgroundColor = model<string>(PLACEHOLDER_SETTINGS.email.backgroundColor);
   newConfigColor = model<string>(PLACEHOLDER_SETTINGS.email.color);
+  isNameRequired = computed(() => this.newConfigName().trim().length === 0);
+  isManagerIdRequired = computed(() => this.newConfigManagerId().trim().length === 0);
+  isLogoFileRequired = computed(() => this.newConfigLogoFile().trim().length === 0);
+  isBackgroundColorRequired = computed(() => this.newConfigBackgroundColor().trim().length === 0);
+  isColorRequired = computed(() => this.newConfigColor().trim().length === 0);
+  isFormValid = computed(
+    () =>
+      !this.isNameRequired() &&
+      !this.isManagerIdRequired() &&
+      !this.isLogoFileRequired() &&
+      !this.isBackgroundColorRequired() &&
+      !this.isColorRequired()
+  );
 
   constructor() {
     effect(() => {
@@ -35,6 +49,7 @@ export class FormConfigBuilder {
       this.customAcctEmailConfig.emit(this.xmlConfigValue())
       this.customPreviewConfig.emit(this.newConfigValue())
       this.newCustomConfig.emit([this.newConfig()])
+      this.formValid.emit(this.isFormValid())
     })
     effect(() => this.useDarkPreview.emit(this.isDarkMode()))
   }

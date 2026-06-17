@@ -19,6 +19,13 @@
     box-sizing: border-box;
 }
 
+.managerInfo {
+    width: 75%;
+    margin: 0.5rem auto 0;
+    max-width: 100%;
+    text-align: center;
+}
+
 .scrollIndicatorContainer {
     width: 1rem;
     display: flex;
@@ -37,9 +44,10 @@
     gap: 0.5rem;
     overflow-x: auto;
     overflow-y: hidden;
-    padding: 0.25rem 0;
+    padding: 0.5rem;
     scrollbar-width: thin;
     min-width: 0;
+    background-color: #fff;
 }
 
 .buttons button {
