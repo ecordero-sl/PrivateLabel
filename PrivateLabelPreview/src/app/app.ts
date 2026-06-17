@@ -5,7 +5,10 @@ import { IPrivateLabel, PLACEHOLDER_SETTINGS, PRIVATE_LABELS } from './constants
 import { EmailPreview } from './email-preview/email-preview';
 import { FormConfigBuilder } from './form-config-builder/form-config-builder';
 import { PreviewControls } from './preview-controls/preview-controls';
-import { buildPrivateLabelXmlConfig } from './private-label-formatting-utils';
+import {
+  buildPrivateLabelXmlConfig,
+  PrivateLabelSubdomain,
+} from './private-label-formatting-utils';
 
 @Component({
   selector: 'app-root',
@@ -28,7 +31,7 @@ export class App {
 
   mode = signal<(typeof this.modes)[keyof typeof this.modes]>(this.modes.build);
   browseView = signal<(typeof this.browseViews)[keyof typeof this.browseViews]>(this.browseViews.preview);
-  customSubdomain = signal<string>('');
+  customSubdomain = signal<PrivateLabelSubdomain>('dev');
   acctEmailConfigSnippet = signal<string>('');
   previewConfigSnippet = signal<string>('');
   customConfig = signal<IPrivateLabel[]>([]);
@@ -44,7 +47,7 @@ export class App {
   );
   selectedPrivateLabelXMLConfig = computed(() => {
     const privateLabel = this.selectedPrivateLabel();
-    const subdomain = 'dev';
+    const subdomain: PrivateLabelSubdomain = 'dev';
     return buildPrivateLabelXmlConfig(privateLabel, subdomain);
   });
 

@@ -3,6 +3,7 @@ import { IPrivateLabel, PLACEHOLDER_SETTINGS } from '../constants';
 import {
   buildPreviewToolConfig,
   buildPrivateLabelXmlConfig,
+  PrivateLabelSubdomain,
 } from '../private-label-formatting-utils';
 
 @Component({
@@ -12,7 +13,7 @@ import {
   styleUrl: './form-config-builder.css',
 })
 export class FormConfigBuilder {
-  customSubdomain = output<string>()
+  customSubdomain = output<PrivateLabelSubdomain>()
   customAcctEmailConfig = output<string>()
   customPreviewConfig = output<string>()
   newCustomConfig = output<IPrivateLabel[]>()
@@ -21,7 +22,7 @@ export class FormConfigBuilder {
   isDarkMode = signal<boolean>(false);
   newConfigTheme = computed(() => (this.isDarkMode() ? '#292929' : 'white'));
   
-  newConfigSubdomain = model<string>('dev');
+  newConfigSubdomain = model<PrivateLabelSubdomain>('dev');
   newConfigName = model<string>(PLACEHOLDER_SETTINGS.name);
   newConfigManagerId = model<string>(PLACEHOLDER_SETTINGS.managerId);
   newConfigLogoFile = model<string>(PLACEHOLDER_SETTINGS.email.logoFile);
@@ -39,7 +40,11 @@ export class FormConfigBuilder {
   }
 
   updateSubdomain(event: any): void {
-    this.newConfigSubdomain.set(event.target.value);
+    const value = event.target.value;
+
+    if (value === 'dev' || value === 'www') {
+      this.newConfigSubdomain.set(value);
+    }
   }
   updateName(event: any): void {
     this.newConfigName.set(event.target.value);
