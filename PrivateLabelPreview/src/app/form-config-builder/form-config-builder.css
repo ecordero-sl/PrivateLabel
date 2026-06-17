@@ -20,6 +20,7 @@
 
 .formContainer form label {
   display: block;
+  font-weight: 700;
 }
 
 .requiredField::after {
@@ -50,4 +51,9 @@
 
 .themeToggleRow {
   width: 100%;
+}
+
+.themeToggleRow p {
+  font-size: 0.9em;
+  font-style: italic;
 }

@@ -23,7 +23,6 @@ section {
     min-width: 0;
     padding: 40px;
     margin-top: 10px;
-    outline: 1px dotted #ddd;
     box-sizing: border-box;
 }
 
