@@ -1,3 +1,48 @@
 .previewControls {
     margin-top: 10px;
+    width: 100%;
+    max-width: 100%;
+}
+
+.buttonScroller {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.5rem;
+    width: 75%;
+    margin: 0 auto;
+    max-width: 100%;
+    background-color: #eee;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    box-sizing: border-box;
+}
+
+.scrollIndicatorContainer {
+    width: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.scrollIndicator {
+    color: #666;
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.buttons {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0.25rem 0;
+    scrollbar-width: thin;
+    min-width: 0;
+}
+
+.buttons button {
+    flex: 0 0 auto;
+    white-space: nowrap;
 }

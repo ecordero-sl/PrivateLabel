@@ -14,24 +14,54 @@ import { buildPrivateLabelXmlConfig } from './private-label-formatting-utils';
   styleUrl: './app.css',
 })
 export class App {
-  privateLabels: IPrivateLabel[] = PRIVATE_LABELS;
-  placeHolderConfig = {...PLACEHOLDER_SETTINGS}
+  readonly modes = {
+    build: 'build',
+    browse: 'browse',
+  } as const;
+  readonly browseViews = {
+    preview: 'preview',
+    config: 'config',
+  } as const;
 
-  customSubdomain = signal<string>('')
-  acctEmailConfigSnippet = signal<string>('')
-  previewConfigSnippet = signal<string>('')
-  customConfig = signal<IPrivateLabel[]>([])
-  useDarkPreview = signal<boolean>(false)
+  privateLabels: IPrivateLabel[] = PRIVATE_LABELS;
+  placeHolderConfig = { ...PLACEHOLDER_SETTINGS };
+
+  mode = signal<(typeof this.modes)[keyof typeof this.modes]>(this.modes.build);
+  browseView = signal<(typeof this.browseViews)[keyof typeof this.browseViews]>(this.browseViews.preview);
+  customSubdomain = signal<string>('');
+  acctEmailConfigSnippet = signal<string>('');
+  previewConfigSnippet = signal<string>('');
+  customConfig = signal<IPrivateLabel[]>([]);
+  useDarkPreview = signal<boolean>(false);
   managerId = signal<string>('');
   previewPrivateLabels = computed<IPrivateLabel[]>(() => this.customConfig().concat([...this.privateLabels]));
-  previewConfig = computed(() => {
-    return this.privateLabels.find(pl => pl.managerId === (this.managerId())) ?? this.placeHolderConfig
-  })
+  activeBrowsePreviewConfig = computed(
+    () => this.previewPrivateLabels().find(pl => pl.managerId === this.managerId()) ?? this.placeHolderConfig
+  );
 
-  selectedPrivateLabel = computed(() => this.previewPrivateLabels().find(pl => pl.managerId === this.managerId()) ?? this.previewPrivateLabels()[0])
+  selectedPrivateLabel = computed(
+    () => this.previewPrivateLabels().find(pl => pl.managerId === this.managerId()) ?? this.previewPrivateLabels()[0]
+  );
   selectedPrivateLabelXMLConfig = computed(() => {
-    const privateLabel = this.selectedPrivateLabel()
-    const subdomain = 'dev'
-    return buildPrivateLabelXmlConfig(privateLabel, subdomain)
-  })
+    const privateLabel = this.selectedPrivateLabel();
+    const subdomain = 'dev';
+    return buildPrivateLabelXmlConfig(privateLabel, subdomain);
+  });
+
+  showBuildMode(): void {
+    this.mode.set(this.modes.build);
+  }
+
+  showBrowseMode(): void {
+    this.mode.set(this.modes.browse);
+    this.browseView.set(this.browseViews.preview);
+  }
+
+  showBrowsePreview(): void {
+    this.browseView.set(this.browseViews.preview);
+  }
+
+  showBrowseConfig(): void {
+    this.browseView.set(this.browseViews.config);
+  }
 }
