@@ -39,6 +39,15 @@ export const PLACEHOLDER_SETTINGS = {
 
 export const PRIVATE_LABELS: IPrivateLabel[] = [
   {
+    name: 'Northpoint Mortgage',
+    managerId: 'D18B0A94-D374-468C-9776-A74677314C29',
+    email: {
+      logoFile: 'afNorthpointLogoEmail.jpg',
+      backgroundColor: '#174a7c',
+      color: 'white',
+    }
+  },
+  {
     name: 'Gold Star Mortgage',
     managerId: 'A70DC5F4-8AB3-4C4C-9048-2535D9ED92F6',
     email: {

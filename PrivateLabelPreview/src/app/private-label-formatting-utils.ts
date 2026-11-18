@@ -26,13 +26,16 @@ export function buildPrivateLabelXmlConfig(
 }
 
 export function buildPreviewToolConfig(privateLabel: IPrivateLabel): string {
+    // Quote string values so the copied text is a valid object literal
+    const toSingleQuotedLiteral = (value: string): string => `'${value.replace(/\\/g, '\\\\').replace(/'/g, "\\'")}'`;
+
     return `{
-        name: ${privateLabel.name},
-        managerId: ${privateLabel.managerId},
+        name: ${toSingleQuotedLiteral(privateLabel.name)},
+        managerId: ${toSingleQuotedLiteral(privateLabel.managerId)},
         email: {
-          logoFile: ${privateLabel.email.logoFile},
-          backgroundColor: ${privateLabel.email.backgroundColor},
-          color: ${privateLabel.email.color},
+          logoFile: ${toSingleQuotedLiteral(privateLabel.email.logoFile)},
+          backgroundColor: ${toSingleQuotedLiteral(privateLabel.email.backgroundColor)},
+          color: ${toSingleQuotedLiteral(privateLabel.email.color)},
         }
       }`
 }
